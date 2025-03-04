@@ -74,7 +74,7 @@ public class SecurityConfig implements WebMvcConfigurer{
                         .userService(customOAuth2UserService)).successHandler(customSuccessHandler));
 System.out.println("여기까지옴")	;
 		http
-			.authorizeHttpRequests((auth)->auth.requestMatchers("/").permitAll().requestMatchers("/my").hasRole("USER").anyRequest().authenticated());
+			.authorizeHttpRequests((auth)->auth.requestMatchers("/").permitAll().requestMatchers("/my","/post/**").hasRole("USER").anyRequest().authenticated());
 		System.out.println("여기까지옴");		
 		http
 			.sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

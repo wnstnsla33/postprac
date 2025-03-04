@@ -26,14 +26,12 @@ public class JWTFilter extends OncePerRequestFilter{
 		String authorization = null;
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie: cookies) {
-			System.out.println("쿠키이름"+cookie.getName());//여기까지는 들어감
 			 if (cookie.getName().equals("Authorization")) {
 
 	                authorization = cookie.getValue();
 			}
 		}
 		String token = authorization;
-		System.out.println("TOKEND이름 : "+authorization);
 		if(jwtUtil.isExpired(token)) {
 			System.out.println("token expired");
 			filterChain.doFilter(request, response);

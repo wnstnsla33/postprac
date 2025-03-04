@@ -29,8 +29,6 @@ public class CustomOAuth2User implements OAuth2User,UserDetails{
 			
 			@Override
 			public String getAuthority() {
-				// TODO Auto-generated method stub
-				System.out.println("hasRole 확인 :"+user.getRole());
 				return user.getRole();
 			}	
 		});

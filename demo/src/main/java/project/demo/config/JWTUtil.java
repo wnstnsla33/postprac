@@ -38,10 +38,6 @@ public class JWTUtil {
                 .parseSignedClaims(token)
                 .getPayload()
                 .getExpiration();
-
-        System.out.println("🔹 토큰 만료 시간: " + expirationDate);
-        System.out.println("🔹 현재 서버 시간: " + new Date());
-
         return expirationDate.before(new Date());
     }
 

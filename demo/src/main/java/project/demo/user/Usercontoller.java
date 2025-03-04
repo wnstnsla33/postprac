@@ -28,6 +28,10 @@ public class Usercontoller {
 	}
 	@GetMapping("/my")
 	public UserEntity myApi(@AuthenticationPrincipal CustomOAuth2User customOAuth2User ) {
+		if(customOAuth2User.getUsername()==null) {
+			System.out.println("*******************************null");
+			return null;
+		}
 		return userService.findUser(customOAuth2User.getUsername()); 
 	}
 }
