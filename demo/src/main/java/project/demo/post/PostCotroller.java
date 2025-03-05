@@ -32,6 +32,7 @@ public class PostCotroller {
 	UserService userService;
 	@GetMapping("/post")
 	public ResponseEntity<List<PostListDTO>> postList(){
+		System.out.println("**************************** 경로 /post");
 		List<PostEntity> list = postService.postList();
 		List<PostListDTO> listDTO = new ArrayList<PostListDTO>();
 		for(PostEntity post : list) {
@@ -41,6 +42,7 @@ public class PostCotroller {
 		}
 	@PostMapping("/post/new")
     public ResponseEntity<?> writePost(@AuthenticationPrincipal CustomOAuth2User customOAuth2User ,@RequestBody PostDTO postDTO) {
+		System.out.println("**************************** 경로 /posyNew");
 		UserEntity user =  userService.findUser(customOAuth2User.getUsername());
 		PostEntity postEntity= postDTO.toEntity(user);
         try {
@@ -53,7 +55,8 @@ public class PostCotroller {
 	}
 	@GetMapping("/post/{id}")
 	public ResponseEntity<?> postDetail(@PathVariable("id") Long id){
-		System.out.println(id+"\n\n\n\n\n\n");
+		System.out.println("**************************** 경로 /post/{id}");
+		postService.hitUp(id);
 		PostListDTO post = new PostListDTO(postService.findPost(id).get());
 		return ResponseEntity.status(HttpStatus.OK).body(post);
 	}

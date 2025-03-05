@@ -25,13 +25,24 @@ public class JWTFilter extends OncePerRequestFilter{
 			throws ServletException, IOException {
 		String authorization = null;
 		Cookie[] cookies = request.getCookies();
+		
+		
+		
 		for(Cookie cookie: cookies) {
 			 if (cookie.getName().equals("Authorization")) {
 
 	                authorization = cookie.getValue();
 			}
 		}
+		
 		String token = authorization;
+		 String requestURI = request.getRequestURI();
+		    if ((requestURI.startsWith("/post")||requestURI.startsWith("/my"))&&token==null) {
+		    	System.out.println("일단 이곳으로");
+		        filterChain.doFilter(request, response);
+		        return;
+		    }
+		
 		if(jwtUtil.isExpired(token)) {
 			System.out.println("token expired");
 			filterChain.doFilter(request, response);

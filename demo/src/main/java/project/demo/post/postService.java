@@ -22,4 +22,7 @@ public class postService {
 	public List<PostEntity> postList(){
 		return 	postRepository.findAll();
 	}
+	public void hitUp(Long id) {
+		postRepository.incrementHit(id);
+	}
 }
