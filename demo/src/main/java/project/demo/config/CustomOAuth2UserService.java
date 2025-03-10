@@ -9,8 +9,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import project.demo.entity.UserEntity;
 import project.demo.user.UserDTO;
-import project.demo.user.UserEntity;
 import project.demo.user.UserRepository;
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService{

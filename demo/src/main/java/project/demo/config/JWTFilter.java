@@ -38,7 +38,6 @@ public class JWTFilter extends OncePerRequestFilter{
 		String token = authorization;
 		 String requestURI = request.getRequestURI();
 		    if ((requestURI.startsWith("/post")||requestURI.startsWith("/my"))&&token==null) {
-		    	System.out.println("일단 이곳으로");
 		        filterChain.doFilter(request, response);
 		        return;
 		    }

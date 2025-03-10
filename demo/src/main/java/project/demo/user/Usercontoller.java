@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.demo.config.CustomOAuth2User;
+import project.demo.entity.UserEntity;
 
 @RestController
 public class Usercontoller {

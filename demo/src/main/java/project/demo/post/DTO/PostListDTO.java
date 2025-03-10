@@ -2,7 +2,7 @@ package project.demo.post.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
-import project.demo.post.PostEntity;
+import project.demo.entity.PostEntity;
 @Getter
 @Setter
 
@@ -22,7 +22,7 @@ public class PostListDTO {
         this.viewCount = post.getViewCount();
         this.createdDate = post.getCreatedDate().toString();
         this.lastModifiedDate = post.getLastModifiedDate().toString();
-        this.userName = post.getUser().getName();
+        this.userName = post.getUserName();
         System.out.println(userName);
     }
 }

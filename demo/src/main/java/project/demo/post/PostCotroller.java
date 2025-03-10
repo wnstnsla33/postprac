@@ -9,17 +9,20 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.demo.config.CustomOAuth2User;
+import project.demo.entity.PostEntity;
+import project.demo.entity.UserEntity;
 import project.demo.post.DTO.PostDTO;
 import project.demo.post.DTO.PostListDTO;
-import project.demo.user.UserEntity;
 import project.demo.user.UserService;
 
 
@@ -27,7 +30,7 @@ import project.demo.user.UserService;
 public class PostCotroller {
 	
 	@Autowired
-	postService postService;
+	PostService postService;
 	@Autowired
 	UserService userService;
 	@GetMapping("/post")
@@ -58,6 +61,17 @@ public class PostCotroller {
 		System.out.println("**************************** 경로 /post/{id}");
 		postService.hitUp(id);
 		PostListDTO post = new PostListDTO(postService.findPost(id).get());
+		return ResponseEntity.status(HttpStatus.OK).body(post);
+	}
+	@DeleteMapping("/post/delete/{id}")
+	public ResponseEntity<?> deletePost(@PathVariable("id")Long id){
+		System.out.println("**************************** 경로 /post/delete/{id}");
+		postService.deletePost(id);
+		return ResponseEntity.status(HttpStatus.OK).body("정상 삭제완료");
+	}
+	@PutMapping("/post/update/{id}")
+	public ResponseEntity<?> updatePost(@PathVariable("id")Long id ,@RequestBody PostDTO postDTO){
+		PostListDTO post = new PostListDTO( postService.updatePost(id, postDTO.getTitle(),postDTO.getContent()).get());
 		return ResponseEntity.status(HttpStatus.OK).body(post);
 	}
 }

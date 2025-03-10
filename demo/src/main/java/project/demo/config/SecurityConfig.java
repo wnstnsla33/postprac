@@ -72,10 +72,8 @@ public class SecurityConfig implements WebMvcConfigurer{
         .oauth2Login((oauth2) -> oauth2
                 .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                         .userService(customOAuth2UserService)).successHandler(customSuccessHandler));
-System.out.println("여기까지옴")	;
 		http
 			.authorizeHttpRequests((auth)->auth.requestMatchers("/","post","my").permitAll().requestMatchers("/post/**").hasRole("USER").anyRequest().authenticated());
-		System.out.println("여기까지옴");	
 		http.addFilterBefore(new JWTFilter(jwtUtil),UsernamePasswordAuthenticationFilter.class);
 		http
 			.sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
