@@ -1,7 +1,12 @@
 package project.demo.postreply.DTO;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import project.demo.entity.ReplyEntity;
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class ReplyListDTO {
 	private Long replyId;
 	private String content;
@@ -14,7 +19,8 @@ public class ReplyListDTO {
 		this.content = replyEntity.getContent();
 		this.postId = replyEntity.getPost().getPostId();
 		this.userName = replyEntity.getUser().getName();
-		this.likeCount = replyEntity.getLikeCount();
+		this.likeCount=0;
 	}
+	
 	
 }

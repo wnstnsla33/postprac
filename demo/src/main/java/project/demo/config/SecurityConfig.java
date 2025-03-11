@@ -73,7 +73,7 @@ public class SecurityConfig implements WebMvcConfigurer{
                 .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                         .userService(customOAuth2UserService)).successHandler(customSuccessHandler));
 		http
-			.authorizeHttpRequests((auth)->auth.requestMatchers("/","post","my").permitAll().requestMatchers("/post/**").hasRole("USER").anyRequest().authenticated());
+			.authorizeHttpRequests((auth)->auth.requestMatchers("/","post","my","post/{id}").permitAll().requestMatchers("/post/**").hasRole("USER").anyRequest().authenticated());
 		http.addFilterBefore(new JWTFilter(jwtUtil),UsernamePasswordAuthenticationFilter.class);
 		http
 			.sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

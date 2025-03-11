@@ -9,6 +9,8 @@ import project.demo.entityConfig.DateEntityConfig;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.ColumnDefault;
+
 @Entity
 @Getter
 @Setter
@@ -32,7 +34,7 @@ public class ReplyEntity extends DateEntityConfig{
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @Column(name = "like_count",columnDefinition = "int default 0")
+    @Column(name = "like_count")
     private Integer likeCount;
 
 	public ReplyEntity(String content, PostEntity post, UserEntity user) {
